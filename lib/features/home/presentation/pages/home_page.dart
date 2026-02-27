@@ -33,13 +33,12 @@ class HomePage extends StatelessWidget {
                     pinned: true,
                     elevation: 0,
                     backgroundColor: AppColors.blueGradientEnd,
+                    title: const HomeSearchBar(),
+                    centerTitle: true,
+                    titleSpacing: 0,
                     flexibleSpace: FlexibleSpaceBar(
                       background: const PromoCarousel(),
                       collapseMode: CollapseMode.pin,
-                    ),
-                    bottom: PreferredSize(
-                      preferredSize: Size.fromHeight(60.h),
-                      child: const HomeSearchBar(),
                     ),
                   ),
 
