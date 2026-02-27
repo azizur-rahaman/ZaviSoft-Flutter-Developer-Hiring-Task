@@ -21,105 +21,81 @@ class HomePage extends StatelessWidget {
         backgroundColor: AppColors.scaffoldBackground,
         body: Stack(
           children: [
-            CustomScrollView(
-              slivers: [
-                // Phase 2: Dynamic Header & Sticky Search Bar
-                SliverAppBar(
-                  expandedHeight: 120.h,
-                  floating: false,
-                  pinned: true,
-                  elevation: 0,
-                  backgroundColor: AppColors.blueGradientEnd,
-                  flexibleSpace: FlexibleSpaceBar(
-                    background: Container(
+            NestedScrollView(
+              headerSliverBuilder: (context, innerBoxIsScrolled) {
+                return [
+                  // Pinned Search Bar Header
+                  SliverPersistentHeader(
+                    pinned: true,
+                    delegate: _SearchBarHeaderDelegate(),
+                  ),
+
+                  // Promo + Quick Links (with gradient blending)
+                  SliverToBoxAdapter(
+                    child: Container(
                       decoration: const BoxDecoration(
                         gradient: LinearGradient(
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
                           colors: [
-                            AppColors.blueGradientStart,
                             AppColors.blueGradientEnd,
+                            AppColors.scaffoldBackground,
                           ],
+                          stops: [0.0, 0.3],
                         ),
                       ),
-                    ),
-                    titlePadding: EdgeInsets.zero,
-                    centerTitle: true,
-                  ),
-                  bottom: const PreferredSize(
-                    preferredSize: Size.fromHeight(60),
-                    child: HomeSearchBar(),
-                  ),
-                ),
-
-                // Phase 3: Promo + Quick Links (with gradient blending)
-                SliverToBoxAdapter(
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          AppColors.blueGradientEnd,
-                          AppColors.scaffoldBackground,
-                        ],
-                        stops: [0.0, 0.3],
+                      child: const Column(
+                        children: [PromoCarousel(), QuickLinksGrid()],
                       ),
                     ),
-                    child: const Column(
-                      children: [PromoCarousel(), QuickLinksGrid()],
+                  ),
+
+                  // Voucher Section
+                  const SliverToBoxAdapter(child: VoucherSection()),
+
+                  // Flash Sale
+                  const SliverToBoxAdapter(child: FlashSaleSection()),
+
+                  // Top Ranking
+                  const SliverToBoxAdapter(child: TopRankingSection()),
+
+                  // Sticky Category Navigation - pins below the search bar
+                  SliverPersistentHeader(
+                    pinned: true,
+                    delegate: _TabBarDelegate(
+                      child: TabBar(
+                        isScrollable: true,
+                        labelColor: AppColors.primary,
+                        unselectedLabelColor: AppColors.textSecondary,
+                        indicatorColor: AppColors.primary,
+                        indicatorSize: TabBarIndicatorSize.label,
+                        tabs: [
+                          Tab(text: AppStrings.forYou),
+                          Tab(text: AppStrings.hotDeals),
+                          Tab(text: AppStrings.voucherMax),
+                          const Tab(text: 'Fashion'),
+                          const Tab(text: 'Electronics'),
+                          const Tab(text: 'Home & Living'),
+                        ],
+                      ),
                     ),
                   ),
+                ];
+              },
+              // Product Grid as the scrollable body
+              body: GridView.builder(
+                padding: EdgeInsets.all(8.w),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 10.h,
+                  crossAxisSpacing: 10.w,
+                  childAspectRatio: 0.7,
                 ),
-
-                // Phase 3: Voucher Section
-                const SliverToBoxAdapter(child: VoucherSection()),
-
-                // Phase 4: Flash Sale
-                const SliverToBoxAdapter(child: FlashSaleSection()),
-
-                // Phase 4: Top Ranking
-                const SliverToBoxAdapter(child: TopRankingSection()),
-
-                // Phase 5: Sticky Category Navigation
-                SliverPersistentHeader(
-                  pinned: true,
-                  delegate: _SliverAppBarDelegate(
-                    height: 48.h,
-                    child: TabBar(
-                      isScrollable: true,
-                      labelColor: AppColors.primary,
-                      unselectedLabelColor: AppColors.textSecondary,
-                      indicatorColor: AppColors.primary,
-                      indicatorSize: TabBarIndicatorSize.label,
-                      tabs: [
-                        Tab(text: AppStrings.forYou),
-                        Tab(text: AppStrings.hotDeals),
-                        Tab(text: AppStrings.voucherMax),
-                        const Tab(text: 'Fashion'),
-                        const Tab(text: 'Electronics'),
-                        const Tab(text: 'Home & Living'),
-                      ],
-                    ),
-                  ),
-                ),
-
-                // Phase 6: Product Grid
-                SliverPadding(
-                  padding: EdgeInsets.all(8.w),
-                  sliver: SliverGrid(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 10.h,
-                      crossAxisSpacing: 10.w,
-                      childAspectRatio: 0.7,
-                    ),
-                    delegate: SliverChildBuilderDelegate((context, index) {
-                      return ProductCard(index: index);
-                    }, childCount: 20),
-                  ),
-                ),
-              ],
+                itemCount: 20,
+                itemBuilder: (context, index) {
+                  return ProductCard(index: index);
+                },
+              ),
             ),
 
             // Phase 7: Floating CTA
@@ -218,16 +194,57 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
-  _SliverAppBarDelegate({required this.child, required this.height});
-
-  final Widget child;
-  final double height;
+/// Pinned search bar header
+class _SearchBarHeaderDelegate extends SliverPersistentHeaderDelegate {
+  @override
+  double get minExtent => 100;
+  @override
+  double get maxExtent => 100;
 
   @override
-  double get minExtent => height;
+  Widget build(
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [AppColors.blueGradientStart, AppColors.blueGradientEnd],
+        ),
+      ),
+      child: const SafeArea(
+        bottom: false,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(bottom: 8),
+              child: HomeSearchBar(),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
-  double get maxExtent => height;
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
+      false;
+}
+
+/// Pinned tab bar delegate
+class _TabBarDelegate extends SliverPersistentHeaderDelegate {
+  final TabBar child;
+
+  _TabBarDelegate({required this.child});
+
+  @override
+  double get minExtent => 48;
+  @override
+  double get maxExtent => 48;
 
   @override
   Widget build(
@@ -239,7 +256,5 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   }
 
   @override
-  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
-    return false;
-  }
+  bool shouldRebuild(_TabBarDelegate oldDelegate) => false;
 }
