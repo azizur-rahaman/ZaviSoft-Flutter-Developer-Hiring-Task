@@ -7,6 +7,7 @@ class BenefitBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.symmetric(horizontal: 12.w), // Added horizontal margin
       padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.w),
       decoration: BoxDecoration(
         color: const Color(0xFF333333), // Dark charcoal as seen in design

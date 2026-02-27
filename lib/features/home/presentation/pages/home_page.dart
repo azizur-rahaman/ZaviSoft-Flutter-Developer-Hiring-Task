@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
                   // Phase 2 & 3: Stacked Header (Carousel Background + Search Bar)
                   SliverAppBar(
                     expandedHeight:
-                        160.h, // Adjusted to match new 38:20 aspect ratio
+                        200.h, // Space for Carousel + BenefitBar overlap
                     pinned: true,
                     elevation: 0,
                     backgroundColor: AppColors.blueGradientEnd,
@@ -37,17 +37,18 @@ class HomePage extends StatelessWidget {
                     centerTitle: true,
                     titleSpacing: 0,
                     flexibleSpace: FlexibleSpaceBar(
-                      background: const PromoCarousel(),
-                      collapseMode: CollapseMode.pin,
-                    ),
-                  ),
-
-                  // New: Benefit Bar (Blue Background behind corners)
-                  SliverToBoxAdapter(
-                    child: Container(
-                      color:
-                          AppColors.blueGradientEnd, // Match top section color
-                      child: BenefitBar(),
+                      background: Stack(
+                        children: [
+                          const PromoCarousel(),
+                          const Positioned(
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            child: BenefitBar(),
+                          ),
+                        ],
+                      ),
+                      collapseMode: CollapseMode.none,
                     ),
                   ),
 
