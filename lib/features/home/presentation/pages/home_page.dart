@@ -45,10 +45,15 @@ class HomePage extends StatelessWidget {
                   // New: Benefit Bar
                   const SliverToBoxAdapter(child: BenefitBar()),
 
-                  // Phase 3: Quick Links
+                  // Phase 3: Quick Links (White Container with Rounded Top)
                   SliverToBoxAdapter(
                     child: Container(
-                      color: AppColors.scaffoldBackground,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(20.r),
+                        ),
+                      ),
                       child: const QuickLinksGrid(),
                     ),
                   ),
