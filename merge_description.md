@@ -1,21 +1,18 @@
-Summary
-This phase adds urgency and social proof to the home page by implementing real-time countdown sales and categorized product rankings.
+# Merge Description: Phase 5 - Sticky Category Navigation
 
-Changes
-🧱 Time-Sensitive & Ranked Sections
-Flash Sale Section: Implemented real-time countdown timer header and horizontal scrolling product list.
-Top Ranking Section: Created categorized ranking cards with No 1, No 2, etc. badges for social proof.
+## Overview
+This phase implements the sticky category navigation bar that pins to the top of the viewport when the user scrolls past the promotional sections.
 
-⚙️ UI & Components
-FlashProductCard: Designed with discount labels, progress bars, and high-impact pricing.
-Ranking Badges: Custom stacked badge system for category leadership status.
+## Implementation Details
+### Home Feature Components
+- **Sticky Header Delegate**: Created `_SliverAppBarDelegate` by extending `SliverPersistentHeaderDelegate` to handle custom pinning behavior for any widget.
+- **Category TabBar**:
+  - Implemented as a `SliverPersistentHeader` with `pinned: true`.
+  - Uses a scrollable `TabBar` for categories like "For You", "Hot Deals", "Voucher Max", etc.
+  - Custom styling (active color: Daraz Primary Orange, indicator: orange underline).
 
-🚀 Configuration
-Responsive Scaling: Applied ScreenUtil for all timer text and ranking card dimensions.
-HomePage Assembly: Integrated Flash Sale and Top Ranking components into the main scroll view.
-
-Verification
- Verified Flash Sale countdown increments correctly.
- Verified Product ranking badges render in the correct stack order.
- Verified Horizontal scrolling for both sections is fluid.
- Verified UI scales correctly on smaller devices.
+## Verification
+- [x] Category bar stays pinned at the top once the search bar reaches its final scroll position.
+- [x] Horizontal scrolling of categories is smooth.
+- [x] Tab indicators move correctly between categories.
+- [x] The header background matches the scaffold color to provide a seamless sticky effect.

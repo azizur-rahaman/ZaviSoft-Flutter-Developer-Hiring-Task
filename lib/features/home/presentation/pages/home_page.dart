@@ -45,7 +45,7 @@ class HomePage extends StatelessWidget {
             ),
           ),
 
-          // Phase 3: Promotional & Navigation Layer
+          // Phase 3 & 4: Promotional, Navigation, Flash Sale, and Rankings
           SliverToBoxAdapter(
             child: Container(
               decoration: const BoxDecoration(
@@ -59,17 +59,46 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               child: const Column(
-                children: [PromoCarousel(), QuickLinksGrid(), VoucherSection()],
+                children: [
+                  PromoCarousel(),
+                  QuickLinksGrid(),
+                  VoucherSection(),
+                  FlashSaleSection(),
+                  TopRankingSection(),
+                ],
               ),
             ),
           ),
 
-          // Placeholder for upcoming phases
+          // Phase 5: Sticky Category Navigation
+          SliverPersistentHeader(
+            pinned: true,
+            delegate: _SliverAppBarDelegate(
+              height: 48,
+              child: TabBar(
+                isScrollable: true,
+                labelColor: AppColors.primary,
+                unselectedLabelColor: AppColors.textSecondary,
+                indicatorColor: AppColors.primary,
+                indicatorSize: TabBarIndicatorSize.label,
+                tabs: [
+                  Tab(text: AppStrings.forYou),
+                  Tab(text: AppStrings.hotDeals),
+                  Tab(text: AppStrings.voucherMax),
+                  const Tab(text: 'Fashion'),
+                  const Tab(text: 'Electronics'),
+                  const Tab(text: 'Home & Living'),
+                ],
+              ),
+            ),
+          ),
+
+          // Placeholder for upcoming Phase 6
           SliverToBoxAdapter(
             child: Container(
               height: 400,
               color: AppColors.scaffoldBackground,
-              child: const Center(child: Text('Content Placeholder')),
+              child: const Center(child: Text('Grid Placeholder')),
             ),
           ),
         ],
@@ -86,5 +115,31 @@ class HomePage extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
+  _SliverAppBarDelegate({required this.child, required this.height});
+
+  final Widget child;
+  final double height;
+
+  @override
+  double get minExtent => height;
+  @override
+  double get maxExtent => height;
+
+  @override
+  Widget build(
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
+    return Container(color: AppColors.scaffoldBackground, child: child);
+  }
+
+  @override
+  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
+    return false;
   }
 }
