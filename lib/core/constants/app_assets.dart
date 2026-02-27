@@ -20,7 +20,7 @@ class AppAssets {
           'https://img.lazcdn.com/us/domino/9de7d3a8-6306-4147-950a-b43a55c45099_BD-150-150.png_120x120q80.png_.avif',
     },
     {
-      'title': 'Buy Any 3',
+      'title': 'DarazMall',
       'iconUrl':
           'https://img.lazcdn.com/us/domino/494ae059-a841-423c-96b6-735ca4b9ae59_BD-150-150.png_120x120q80.png_.avif',
     },

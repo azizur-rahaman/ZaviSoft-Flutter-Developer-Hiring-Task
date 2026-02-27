@@ -41,12 +41,13 @@ class QuickLinksGrid extends StatelessWidget {
                 ),
                 SizedBox(height: 6.h),
                 Text(
-                  link['title']!,
+                  link['title']!.replaceFirst(' ', '\n'),
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 10.sp,
                     color: AppColors.textPrimary,
                     fontWeight: FontWeight.w500,
+                    height: 1.2, // Tweak line height for better multi-line look
                   ),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
