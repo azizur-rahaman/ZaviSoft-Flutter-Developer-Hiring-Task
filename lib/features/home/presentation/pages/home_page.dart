@@ -7,6 +7,7 @@ import '../widgets/quick_links_grid.dart';
 import '../widgets/voucher_section.dart';
 import '../widgets/flash_sale_section.dart';
 import '../widgets/top_ranking_section.dart';
+import '../widgets/product_card.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -93,12 +94,19 @@ class HomePage extends StatelessWidget {
             ),
           ),
 
-          // Placeholder for upcoming Phase 6
-          SliverToBoxAdapter(
-            child: Container(
-              height: 400,
-              color: AppColors.scaffoldBackground,
-              child: const Center(child: Text('Grid Placeholder')),
+          // Phase 6: Product Grid
+          SliverPadding(
+            padding: const EdgeInsets.all(8.0),
+            sliver: SliverGrid(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
+                childAspectRatio: 0.7,
+              ),
+              delegate: SliverChildBuilderDelegate((context, index) {
+                return ProductCard(index: index);
+              }, childCount: 20),
             ),
           ),
         ],
