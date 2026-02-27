@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import '../../../../core/constants/app_assets.dart';
 import '../../../../config/theme/app_colors.dart';
 
 class QuickLinksGrid extends StatelessWidget {
@@ -7,57 +9,44 @@ class QuickLinksGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Map<String, dynamic>> links = [
-      {
-        'title': 'Win Free Gifts',
-        'icon': Icons.card_giftcard,
-        'color': Colors.amber,
-      },
-      {
-        'title': 'Eid Sale',
-        'icon': Icons.shopping_bag,
-        'color': AppColors.primary,
-      },
-      {
-        'title': 'Free Delivery',
-        'icon': Icons.local_shipping,
-        'color': AppColors.statusGreen,
-      },
-      {'title': 'Buy Any 3', 'icon': Icons.filter_3, 'color': Colors.red},
-      {'title': 'Daraz Freebie', 'icon': Icons.redeem, 'color': Colors.purple},
-    ];
-
     return Container(
       height: 100.h,
       padding: EdgeInsets.symmetric(vertical: 10.h),
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: links.length,
+        itemCount: AppAssets.quickLinks.length,
         itemBuilder: (context, index) {
+          final link = AppAssets.quickLinks[index];
           return Container(
             width: 75.w,
             padding: EdgeInsets.symmetric(horizontal: 4.w),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  padding: EdgeInsets.all(8.w),
-                  decoration: BoxDecoration(
-                    color: links[index]['color'].withOpacity(0.1),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(
-                    links[index]['icon'],
-                    color: links[index]['color'],
-                    size: 24.w,
+                SizedBox(
+                  height: 44.w,
+                  width: 44.w,
+                  child: CachedNetworkImage(
+                    imageUrl: link['iconUrl']!,
+                    fit: BoxFit.contain,
+                    placeholder: (context, url) => Container(
+                      decoration: BoxDecoration(
+                        color: Colors.grey[200],
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error, color: Colors.grey),
                   ),
                 ),
-                SizedBox(height: 4.h),
+                SizedBox(height: 6.h),
                 Text(
-                  links[index]['title'],
+                  link['title']!,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 10.sp,
                     color: AppColors.textPrimary,
+                    fontWeight: FontWeight.w500,
                   ),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
