@@ -9,51 +9,34 @@ class PromoCarousel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 10.h),
-      child: CarouselSlider(
-        options: CarouselOptions(
-          height: 150.h,
-          viewportFraction: 0.92,
-          enlargeCenterPage: true,
-          autoPlay: true,
-          autoPlayInterval: const Duration(seconds: 4),
-        ),
-        items: AppAssets.promoBanners.map((url) {
-          return CachedNetworkImage(
-            imageUrl: url,
-            imageBuilder: (context, imageProvider) => Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12.r),
-                image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.1),
-                    blurRadius: 8,
-                    offset: const Offset(0, 4),
-                  ),
-                ],
-              ),
-            ),
-            placeholder: (context, url) => Container(
-              decoration: BoxDecoration(
-                color: Colors.grey[200],
-                borderRadius: BorderRadius.circular(12.r),
-              ),
-              child: const Center(
-                child: CircularProgressIndicator(strokeWidth: 2),
-              ),
-            ),
-            errorWidget: (context, url, error) => Container(
-              decoration: BoxDecoration(
-                color: Colors.grey[300],
-                borderRadius: BorderRadius.circular(12.r),
-              ),
-              child: const Icon(Icons.error_outline, color: Colors.grey),
-            ),
-          );
-        }).toList(),
+    return CarouselSlider(
+      options: CarouselOptions(
+        height: 220.h, // Increased height for hero look
+        viewportFraction: 1.0, // Full width
+        autoPlay: true,
+        autoPlayInterval: const Duration(seconds: 4),
+        enlargeCenterPage: false, // Don't enlarge since it's full width
       ),
+      items: AppAssets.promoBanners.map((url) {
+        return CachedNetworkImage(
+          imageUrl: url,
+          imageBuilder: (context, imageProvider) => Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
+            ),
+          ),
+          placeholder: (context, url) => Container(
+            color: Colors.grey[200],
+            child: const Center(
+              child: CircularProgressIndicator(strokeWidth: 2),
+            ),
+          ),
+          errorWidget: (context, url, error) => Container(
+            color: Colors.grey[300],
+            child: const Icon(Icons.error_outline, color: Colors.grey),
+          ),
+        );
+      }).toList(),
     );
   }
 }

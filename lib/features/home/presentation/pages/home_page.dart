@@ -10,6 +10,8 @@ import '../widgets/flash_sale_section.dart';
 import '../widgets/top_ranking_section.dart';
 import '../widgets/product_card.dart';
 
+import '../widgets/benefit_bar.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -24,29 +26,30 @@ class HomePage extends StatelessWidget {
             NestedScrollView(
               headerSliverBuilder: (context, innerBoxIsScrolled) {
                 return [
-                  // Pinned Search Bar Header
-                  SliverPersistentHeader(
+                  // Phase 2 & 3: Stacked Header (Carousel Background + Search Bar)
+                  SliverAppBar(
+                    expandedHeight: 220.h,
                     pinned: true,
-                    delegate: _SearchBarHeaderDelegate(),
+                    elevation: 0,
+                    backgroundColor: AppColors.blueGradientEnd,
+                    flexibleSpace: FlexibleSpaceBar(
+                      background: const PromoCarousel(),
+                      collapseMode: CollapseMode.pin,
+                    ),
+                    bottom: PreferredSize(
+                      preferredSize: Size.fromHeight(60.h),
+                      child: const HomeSearchBar(),
+                    ),
                   ),
 
-                  // Promo + Quick Links (with gradient blending)
+                  // New: Benefit Bar
+                  const SliverToBoxAdapter(child: BenefitBar()),
+
+                  // Phase 3: Quick Links
                   SliverToBoxAdapter(
                     child: Container(
-                      decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [
-                            AppColors.blueGradientEnd,
-                            AppColors.scaffoldBackground,
-                          ],
-                          stops: [0.0, 0.3],
-                        ),
-                      ),
-                      child: const Column(
-                        children: [PromoCarousel(), QuickLinksGrid()],
-                      ),
+                      color: AppColors.scaffoldBackground,
+                      child: const QuickLinksGrid(),
                     ),
                   ),
 
@@ -192,47 +195,6 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
-}
-
-/// Pinned search bar header
-class _SearchBarHeaderDelegate extends SliverPersistentHeaderDelegate {
-  @override
-  double get minExtent => 100;
-  @override
-  double get maxExtent => 100;
-
-  @override
-  Widget build(
-    BuildContext context,
-    double shrinkOffset,
-    bool overlapsContent,
-  ) {
-    return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [AppColors.blueGradientStart, AppColors.blueGradientEnd],
-        ),
-      ),
-      child: const SafeArea(
-        bottom: false,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(bottom: 8),
-              child: HomeSearchBar(),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
-      false;
 }
 
 /// Pinned tab bar delegate
