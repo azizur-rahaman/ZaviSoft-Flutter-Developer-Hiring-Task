@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../core/constants/app_strings.dart';
 import '../../../../config/theme/app_colors.dart';
+import '../widgets/home_search_bar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -10,66 +11,41 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          // This will be Phase 2: Dynamic Header & Sticky Search Bar
-          const SliverAppBar(
-            floating: true,
+          // Phase 2: Dynamic Header & Sticky Search Bar
+          SliverAppBar(
+            expandedHeight: 120,
+            floating: false,
             pinned: true,
-            title: Text(AppStrings.appName),
-            backgroundColor: AppColors.primary,
-          ),
-
-          // Search Bar Placeholder
-          SliverToBoxAdapter(
-            child: Container(
-              height: 100,
-              color: AppColors.primary,
-              child: const Center(
-                child: Text(
-                  'Search Bar Placeholder',
-                  style: TextStyle(color: Colors.white),
+            elevation: 0,
+            backgroundColor: AppColors.blueGradientEnd,
+            flexibleSpace: FlexibleSpaceBar(
+              background: Container(
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      AppColors.blueGradientStart,
+                      AppColors.blueGradientEnd,
+                    ],
+                  ),
                 ),
               ),
+              titlePadding: EdgeInsets.zero,
+              centerTitle: true,
+            ),
+            bottom: const PreferredSize(
+              preferredSize: Size.fromHeight(60),
+              child: HomeSearchBar(),
             ),
           ),
 
-          // Phase 3: Promotional & Navigation Layer Placeholder
+          // Placeholder for upcoming phases
           SliverToBoxAdapter(
             child: Container(
-              height: 200,
-              color: Colors.blue[100],
-              child: const Center(child: Text('Banners & Quick Links')),
-            ),
-          ),
-
-          // Category Navigation (Phase 5: Sticky Category Navigation)
-          SliverPersistentHeader(
-            pinned: true,
-            delegate: _SliverAppBarDelegate(
-              TabBar(
-                isScrollable: true,
-                tabs: [
-                  Tab(text: AppStrings.forYou),
-                  Tab(text: AppStrings.hotDeals),
-                  Tab(text: AppStrings.voucherMax),
-                  const Tab(text: 'Categories'),
-                ],
-              ),
-            ),
-          ),
-
-          // Phase 6: Product Grid
-          SliverPadding(
-            padding: const EdgeInsets.all(8.0),
-            sliver: SliverGrid(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-                childAspectRatio: 0.7,
-              ),
-              delegate: SliverChildBuilderDelegate((context, index) {
-                return Card(child: Center(child: Text('Product $index')));
-              }, childCount: 20),
+              height: 600,
+              color: AppColors.scaffoldBackground,
+              child: const Center(child: Text('Content Placeholder')),
             ),
           ),
         ],
@@ -86,30 +62,5 @@ class HomePage extends StatelessWidget {
         ],
       ),
     );
-  }
-}
-
-class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
-  _SliverAppBarDelegate(this._tabBar);
-
-  final TabBar _tabBar;
-
-  @override
-  double get minExtent => _tabBar.preferredSize.height;
-  @override
-  double get maxExtent => _tabBar.preferredSize.height;
-
-  @override
-  Widget build(
-    BuildContext context,
-    double shrinkOffset,
-    bool overlapsContent,
-  ) {
-    return Container(color: AppColors.cardBackground, child: _tabBar);
-  }
-
-  @override
-  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
-    return false;
   }
 }
