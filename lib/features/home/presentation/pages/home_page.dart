@@ -42,8 +42,13 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
 
-                  // New: Benefit Bar
-                  const SliverToBoxAdapter(child: BenefitBar()),
+                  // New: Benefit Bar with blue background bleed
+                  SliverToBoxAdapter(
+                    child: Container(
+                      color: AppColors.blueGradientEnd,
+                      child: const BenefitBar(),
+                    ),
+                  ),
 
                   // Phase 3: Quick Links (White Container with Rounded Top)
                   SliverToBoxAdapter(
