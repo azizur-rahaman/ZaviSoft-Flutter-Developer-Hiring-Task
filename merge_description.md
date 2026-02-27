@@ -2,18 +2,23 @@ Summary
 This PR implements the dynamic header and sticky search bar for the Daraz product listing page. It introduces the primary interactive search component and dynamic background transitions.
 
 Changes
-🔍 Dynamic Header & Search Bar
-HomePage Implementation: Updated lib/features/home/presentation/pages/home_page.dart to include the SliverAppBar and search bar components.
+🔍 Header & Search Bar
+HomePage Architecture: Updated lib/features/home/presentation/pages/home_page.dart to include the SliverAppBar and search bar components.
 Sliver Implementation:
-SliverAppBar as a dynamic header with blue gradient.
-HomeSearchBar widget for interactive search functionality.
-HomeSearchBar Details:
-Scan and Message action icons.
-Rounded search field with Camera icon.
-Primary "Search" button with Daraz branding (#F85606).
+SliverAppBar as a pinned header with linear gradient.
+HomeSearchBar integrated into the bottom property of SliverAppBar.
+⚙️ UI & Components
+HomeSearchBar Widget: Implemented standalone widget in lib/features/home/presentation/widgets/home_search_bar.dart.
+Interactive Elements:
+Scan and Message icons for utility actions.
+Search TextField with Camera icon suffix.
+Primary Search Button styled with Daraz orange theme (#F85606).
+🚀 Configuration
+Responsive Scaling: Applied flutter_screenutil for all header dimensions and spacing.
+Clean Architecture: Maintained separation between core constants and feature-specific widgets.
 
 Verification
- Verified search bar remains pinned at the top during scroll.
- Verified all icons and buttons render correctly.
- Verified gradient transitions match the design.
- Verified mobile responsiveness for the header area.
+ Verified sticky search bar persistence during scroll.
+ Verified all action icons (Scan, Camera, Message) render correctly.
+ Verified Search button appearance and branding alignment.
+ Verified gradient background correctly transitions on scroll.
