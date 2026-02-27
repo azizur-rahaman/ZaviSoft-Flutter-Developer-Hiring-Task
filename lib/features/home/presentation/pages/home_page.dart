@@ -28,8 +28,8 @@ class HomePage extends StatelessWidget {
                 return [
                   // Phase 2 & 3: Stacked Header (Carousel Background + Search Bar)
                   SliverAppBar(
-                    expandedHeight: 130
-                        .h, // Adjusted to match 38:13 aspect ratio (~128px on 375w)
+                    expandedHeight:
+                        160.h, // Adjusted to match new 38:16 aspect ratio
                     pinned: true,
                     elevation: 0,
                     backgroundColor: AppColors.blueGradientEnd,
