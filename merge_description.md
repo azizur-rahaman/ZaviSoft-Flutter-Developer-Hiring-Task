@@ -8,11 +8,11 @@ This phase implements the primary interactive header for the Daraz home page, in
 - **Page Implementation**: Updated `HomePage` to use `SliverAppBar` with a height of 120 pixels.
 - **Dynamic Background**: Implemented a `LinearGradient` (Blue Gradient) in the `FlexibleSpaceBar` that pins and transforms on scroll.
 - **Search Component**: Created `HomeSearchBar` widget:
-  - QR Scanner action button.
-  - Interactive `TextField` container with rounded corners.
-  - Camera action icon.
-  - Primary "Search" button with Daraz-signature orange styling.
-  - Message/Messaging action button.
+  - **Scan Action**: Left-aligned QR scanner button (white) for physical interaction.
+  - **Search Container**: Centered rounded white container with an interactive `TextField`.
+  - **Visual Capture**: Integrated camera icon suffix for image-based searching.
+  - **Primary CTA**: High-visibility "Search" button with Daraz-signature orange styling (#F85606) and rounded corners.
+  - **Communication**: Right-aligned message/chat icon for user notifications.
 
 ## Verification
 - [x] Search bar remains pinned at the top when scrolling.
