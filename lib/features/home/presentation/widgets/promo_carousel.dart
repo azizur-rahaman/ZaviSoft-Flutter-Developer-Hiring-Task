@@ -10,7 +10,7 @@ class PromoCarousel extends StatelessWidget {
   Widget build(BuildContext context) {
     return CarouselSlider(
       options: CarouselOptions(
-        aspectRatio: 38 / 13, // Exactly 2.923:1 for Daraz styling
+        aspectRatio: 38 / 16, // Exactly 2.923:1 for Daraz styling
         viewportFraction: 1.0,
         autoPlay: true,
         autoPlayInterval: const Duration(seconds: 4),
@@ -21,7 +21,7 @@ class PromoCarousel extends StatelessWidget {
           imageUrl: url,
           imageBuilder: (context, imageProvider) => Container(
             decoration: BoxDecoration(
-              image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
+              image: DecorationImage(image: imageProvider, fit: BoxFit.fill),
             ),
           ),
           placeholder: (context, url) => Container(
