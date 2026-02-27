@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../../../../core/constants/app_assets.dart';
 
@@ -11,11 +10,11 @@ class PromoCarousel extends StatelessWidget {
   Widget build(BuildContext context) {
     return CarouselSlider(
       options: CarouselOptions(
-        height: 220.h, // Increased height for hero look
-        viewportFraction: 1.0, // Full width
+        aspectRatio: 38 / 13, // Exactly 2.923:1 for Daraz styling
+        viewportFraction: 1.0,
         autoPlay: true,
         autoPlayInterval: const Duration(seconds: 4),
-        enlargeCenterPage: false, // Don't enlarge since it's full width
+        enlargeCenterPage: false,
       ),
       items: AppAssets.promoBanners.map((url) {
         return CachedNetworkImage(
