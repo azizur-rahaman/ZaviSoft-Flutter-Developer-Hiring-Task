@@ -7,11 +7,10 @@ class BenefitBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(12.w, 4.h, 12.w, 8.h),
       padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.w),
       decoration: BoxDecoration(
         color: const Color(0xFF333333), // Dark charcoal as seen in design
-        borderRadius: BorderRadius.circular(8.r),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(12.r)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,

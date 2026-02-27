@@ -42,24 +42,24 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
 
-                  // New: Benefit Bar with blue background bleed
-                  SliverToBoxAdapter(
-                    child: Container(
-                      color: AppColors.blueGradientEnd,
-                      child: const BenefitBar(),
-                    ),
-                  ),
+                  // New: Benefit Bar
+                  const SliverToBoxAdapter(child: BenefitBar()),
 
                   // Phase 3: Quick Links (White Container with Rounded Top)
                   SliverToBoxAdapter(
                     child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.vertical(
-                          top: Radius.circular(20.r),
+                      color: const Color(
+                        0xFF333333,
+                      ), // Match BenefitBar color behind corners
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(20.r),
+                          ),
                         ),
+                        child: const QuickLinksGrid(),
                       ),
-                      child: const QuickLinksGrid(),
                     ),
                   ),
 
