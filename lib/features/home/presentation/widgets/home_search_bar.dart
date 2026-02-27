@@ -23,10 +23,11 @@ class HomeSearchBar extends StatelessWidget {
           // Search Field Container
           Expanded(
             child: Container(
-              height: 40,
+              height: 44,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(8),
+                border: Border.all(color: AppColors.primary, width: 2),
               ),
               child: Row(
                 children: [
@@ -41,7 +42,7 @@ class HomeSearchBar extends StatelessWidget {
                         ),
                         border: InputBorder.none,
                         isDense: true,
-                        contentPadding: EdgeInsets.zero,
+                        contentPadding: EdgeInsets.symmetric(vertical: 4),
                       ),
                     ),
                   ),
@@ -52,7 +53,7 @@ class HomeSearchBar extends StatelessWidget {
                     icon: const Icon(
                       Icons.camera_alt_outlined,
                       color: AppColors.textSecondary,
-                      size: 20,
+                      size: 24,
                     ),
                     padding: EdgeInsets.zero,
                     constraints: const BoxConstraints(),
@@ -61,24 +62,24 @@ class HomeSearchBar extends StatelessWidget {
 
                   // Search Button
                   Container(
-                    height: 32,
-                    margin: const EdgeInsets.only(right: 4),
+                    height: double.infinity,
+                    margin: const EdgeInsets.only(right: 2, top: 2, bottom: 2),
                     child: ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primary,
                         foregroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(4),
+                          borderRadius: BorderRadius.circular(6),
                         ),
                         elevation: 0,
                       ),
                       child: const Text(
                         AppStrings.searchButton,
                         style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),
