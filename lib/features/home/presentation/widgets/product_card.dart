@@ -14,7 +14,7 @@ class ProductCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(8.r),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 5,
             offset: const Offset(0, 2),
           ),
@@ -39,7 +39,7 @@ class ProductCard extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(8.w),
+            padding: EdgeInsets.all(6.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -50,6 +50,7 @@ class ProductCard extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 12.sp,
                     color: AppColors.textPrimary,
+                    height: 1.2,
                   ),
                 ),
                 SizedBox(height: 4.h),
@@ -64,13 +65,14 @@ class ProductCard extends StatelessWidget {
                 SizedBox(height: 2.h),
                 Row(
                   children: [
-                    Icon(Icons.star, color: Colors.amber, size: 10.sp),
+                    Icon(Icons.star, color: AppColors.ratingGold, size: 10.sp),
                     SizedBox(width: 2.w),
                     Text(
                       '4.8',
                       style: TextStyle(
                         fontSize: 10.sp,
                         color: AppColors.textSecondary,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                     SizedBox(width: 4.w),
