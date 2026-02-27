@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import '../../../../core/constants/app_strings.dart';
 import '../../../../config/theme/app_colors.dart';
 import '../widgets/home_search_bar.dart';
+import '../widgets/promo_carousel.dart';
+import '../widgets/quick_links_grid.dart';
+import '../widgets/voucher_section.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -40,10 +43,29 @@ class HomePage extends StatelessWidget {
             ),
           ),
 
+          // Phase 3: Promotional & Navigation Layer
+          SliverToBoxAdapter(
+            child: Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    AppColors.blueGradientEnd,
+                    AppColors.scaffoldBackground,
+                  ],
+                ),
+              ),
+              child: const Column(
+                children: [PromoCarousel(), QuickLinksGrid(), VoucherSection()],
+              ),
+            ),
+          ),
+
           // Placeholder for upcoming phases
           SliverToBoxAdapter(
             child: Container(
-              height: 600,
+              height: 400,
               color: AppColors.scaffoldBackground,
               child: const Center(child: Text('Content Placeholder')),
             ),

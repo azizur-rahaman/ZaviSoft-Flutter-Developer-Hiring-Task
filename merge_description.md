@@ -1,24 +1,19 @@
 Summary
-This PR implements the dynamic header and sticky search bar for the Daraz product listing page. It introduces the primary interactive search component and dynamic background transitions.
+This phase introduces the primary engagement area below the header, including promotional banners, quick navigation links, and the voucher claim section.
 
 Changes
-🔍 Header & Search Bar
-HomePage Architecture: Updated lib/features/home/presentation/pages/home_page.dart to include the SliverAppBar and search bar components.
-Sliver Implementation:
-SliverAppBar as a pinned header with linear gradient.
-HomeSearchBar integrated into the bottom property of SliverAppBar.
-⚙️ UI & Components
-HomeSearchBar Widget: Implemented standalone widget in lib/features/home/presentation/widgets/home_search_bar.dart.
-Interactive Elements:
-Scan and Message icons for utility actions.
-Search TextField with Camera icon suffix.
-Primary Search Button styled with Daraz orange theme (#F85606).
+🖼️ Promotional & Navigation Area
+Promo Carousel: Implemented using carousel_slider with responsive scaling and auto-play.
+Quick Links Grid: Created horizontal scrolling list of circular action items for categorical navigation.
+Voucher Section: Implemented with custom DashedRectPainter for the iconic cut-out look without external dependency issues.
+⚙️ Core Integration
+HomePage Assembly: Added PromoCarousel, QuickLinksGrid, and VoucherSection to the main scroll view.
+Visual Depth: Implemented blue-to-white gradient backgrounds to blend the header into the promotional layer.
 🚀 Configuration
-Responsive Scaling: Applied flutter_screenutil for all header dimensions and spacing.
-Clean Architecture: Maintained separation between core constants and feature-specific widgets.
+Responsive Layout: Used ScreenUtil for all banner dimensions and icon sizing to ensure scaling across devices.
 
 Verification
- Verified sticky search bar persistence during scroll.
- Verified all action icons (Scan, Camera, Message) render correctly.
- Verified Search button appearance and branding alignment.
- Verified gradient background correctly transitions on scroll.
+ Verified Carousel banners scroll smoothly and scale correctly.
+ Verified Quick links are horizontally scrollable and icons render clearly.
+ Verified Voucher cards feature correct dashed borders and background colors.
+ Verified all components are responsive via flutter_screenutil.
