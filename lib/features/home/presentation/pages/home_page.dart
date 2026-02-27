@@ -5,6 +5,8 @@ import '../widgets/home_search_bar.dart';
 import '../widgets/promo_carousel.dart';
 import '../widgets/quick_links_grid.dart';
 import '../widgets/voucher_section.dart';
+import '../widgets/flash_sale_section.dart';
+import '../widgets/top_ranking_section.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

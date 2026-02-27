@@ -1,19 +1,20 @@
-# Merge Description: Phase 3 - Promotional & Navigation Layer
+# Merge Description: Phase 4 - Time-Sensitive & Ranked Sections
 
 ## Overview
-This phase introduces the primary engagement area below the header, including promotional banners, quick navigation links, and the voucher claim section.
+This phase adds urgency and social proof to the home page by implementing real-time countdown sales and categorized product rankings.
 
 ## Implementation Details
 ### Home Feature Widgets
-- **Promo Carousel**: Implemented `PromoCarousel` using `carousel_slider`. Supports responsive banner scaling and auto-play.
-- **Quick Links Grid**: Implemented `QuickLinksGrid` as a horizontal horizontally scrolling list of circular action items (Win Free Gifts, Eid Sale, etc.).
-- **Voucher Section**: Implemented `VoucherSection` with:
-  - Custom `DashedRectPainter` to replicate the iconic "cut-out" voucher look without external dependency issues.
-  - "Collect All" action button.
-  - Decorative background and typography aligned with Phase 3 requirements.
+- **Flash Sale Section**:
+  - Implemented a countdown timer header that updates in real-time.
+  - Horizontally scrolling list of `FlashProductCard` instances with discount badges and progress bars (simulated).
+- **Top Ranking Section**:
+  - Implemented categorized ranking cards.
+  - Added specific badges for "No 1", "No 2", etc., to highlight high-performing categories.
+  - Linked header to "Discover More Rankings".
 
 ## Verification
-- [x] Carousel banners scroll smoothly and scale correctly.
-- [x] Quick links are horizontally scrollable and icons render clearly.
-- [x] Voucher cards feature correct dashed borders and background colors.
-- [x] All components are responsive via `flutter_screenutil`.
+- [x] Flash Sale countdown increments correctly.
+- [x] Product ranking badges render in the correct stack order.
+- [x] Horizontal scrolling for both sections is fluid.
+- [x] UI scales correctly on smaller devices using `ScreenUtil`.
