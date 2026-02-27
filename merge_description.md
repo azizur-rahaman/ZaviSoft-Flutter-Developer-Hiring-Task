@@ -1,21 +1,21 @@
-# Merge Description: Phase 2 - Dynamic Header & Sticky Search Bar
+# Summary
+This PR implements the dynamic header and sticky search bar for the Daraz product listing page. It introduces the primary interactive search component and dynamic background transitions.
 
-## Overview
-This phase implements the primary interactive header for the Daraz home page, including a sticky search bar with dynamic background behaviors.
+# Changes
+### 🔍 Header & Search Bar
+- **Dynamic Header**: Implemented a responsive `SliverAppBar` with a `LinearGradient` background transition.
+- **HomeSearchBar Widget**: Created a standalone search component in `lib/features/home/presentation/widgets/home_search_bar.dart`.
+- **Interactive UI**:
+    - QR Scanner and Message/Communication action icons.
+    - Rounded white search field with Camera icon suffix.
+    - High-visibility "Search" button with Daraz-signature orange styling (#F85606).
 
-## Implementation Details
-### Home Feature
-- **Page Implementation**: Updated `HomePage` to use `SliverAppBar` with a height of 120 pixels.
-- **Dynamic Background**: Implemented a `LinearGradient` (Blue Gradient) in the `FlexibleSpaceBar` that pins and transforms on scroll.
-- **Search Component**: Created `HomeSearchBar` widget:
-  - **Scan Action**: Left-aligned QR scanner button (white) for physical interaction.
-  - **Search Container**: Centered rounded white container with an interactive `TextField`.
-  - **Visual Capture**: Integrated camera icon suffix for image-based searching.
-  - **Primary CTA**: High-visibility "Search" button with Daraz-signature orange styling (#F85606) and rounded corners.
-  - **Communication**: Right-aligned message/chat icon for user notifications.
+### ⚙️ UI Polish & Configuration
+- **Gradient Transition**: Configured `FlexibleSpaceBar` background to transition from blue to clear on scroll.
+- **Responsiveness**: Applied `flutter_screenutil` for all dimensions, padding, and font scaling to ensure pixel-perfect results.
 
-## Verification
-- [x] Search bar remains pinned at the top when scrolling.
-- [x] All icons (Scan, Camera, Messages) are rendered with correct colors.
-- [x] Search button matches the Daraz theme (background: #F85606).
-- [x] Header gradient correctly transitions as per the design requirement.
+# Verification
+- [x] Verified search bar remains pinned at the top during scroll.
+- [x] Verified all icons, buttons, and text fields render correctly.
+- [x] Verified gradient colors and transitions match the design requirements.
+- [x] Verified UI responsiveness across different mobile device sizes.
