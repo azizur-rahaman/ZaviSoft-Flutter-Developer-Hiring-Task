@@ -52,7 +52,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
 
-                // Phase 3 & 4: Sections as individual slivers for better scroll behavior
+                // Phase 3: Promo + Quick Links (with gradient blending)
                 SliverToBoxAdapter(
                   child: Container(
                     decoration: const BoxDecoration(
@@ -72,8 +72,13 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
 
+                // Phase 3: Voucher Section
                 const SliverToBoxAdapter(child: VoucherSection()),
+
+                // Phase 4: Flash Sale
                 const SliverToBoxAdapter(child: FlashSaleSection()),
+
+                // Phase 4: Top Ranking
                 const SliverToBoxAdapter(child: TopRankingSection()),
 
                 // Phase 5: Sticky Category Navigation
@@ -164,20 +169,20 @@ class HomePage extends StatelessWidget {
           items: [
             BottomNavigationBarItem(
               icon: Stack(
+                clipBehavior: Clip.none,
                 children: [
                   const Icon(Icons.home),
                   Positioned(
-                    right: -2,
-                    top: -2,
+                    right: -6,
+                    top: -4,
                     child: Container(
-                      padding: const EdgeInsets.all(2),
-                      decoration: const BoxDecoration(
-                        color: AppColors.badgeRed,
-                        shape: BoxShape.circle,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 4,
+                        vertical: 1,
                       ),
-                      constraints: const BoxConstraints(
-                        minWidth: 12,
-                        minHeight: 12,
+                      decoration: BoxDecoration(
+                        color: AppColors.badgeRed,
+                        borderRadius: BorderRadius.circular(6),
                       ),
                       child: const Text(
                         '3.3',

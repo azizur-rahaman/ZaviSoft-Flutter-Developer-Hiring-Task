@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Daraz Clone',
           theme: AppTheme.lightTheme,
-          home: const DefaultTabController(length: 4, child: HomePage()),
+          home: const HomePage(),
         );
       },
     );
