@@ -1,20 +1,18 @@
-# Merge Description: Phase 4 - Time-Sensitive & Ranked Sections
+# Merge Description: Phase 5 - Sticky Category Navigation
 
 ## Overview
-This phase adds urgency and social proof to the home page by implementing real-time countdown sales and categorized product rankings.
+This phase implements the sticky category navigation bar that pins to the top of the viewport when the user scrolls past the promotional sections.
 
 ## Implementation Details
-### Home Feature Widgets
-- **Flash Sale Section**:
-  - Implemented a countdown timer header that updates in real-time.
-  - Horizontally scrolling list of `FlashProductCard` instances with discount badges and progress bars (simulated).
-- **Top Ranking Section**:
-  - Implemented categorized ranking cards.
-  - Added specific badges for "No 1", "No 2", etc., to highlight high-performing categories.
-  - Linked header to "Discover More Rankings".
+### Home Feature Components
+- **Sticky Header Delegate**: Created `_SliverAppBarDelegate` by extending `SliverPersistentHeaderDelegate` to handle custom pinning behavior for any widget.
+- **Category TabBar**:
+  - Implemented as a `SliverPersistentHeader` with `pinned: true`.
+  - Uses a scrollable `TabBar` for categories like "For You", "Hot Deals", "Voucher Max", etc.
+  - Custom styling (active color: Daraz Primary Orange, indicator: orange underline).
 
 ## Verification
-- [x] Flash Sale countdown increments correctly.
-- [x] Product ranking badges render in the correct stack order.
-- [x] Horizontal scrolling for both sections is fluid.
-- [x] UI scales correctly on smaller devices using `ScreenUtil`.
+- [x] Category bar stays pinned at the top once the search bar reaches its final scroll position.
+- [x] Horizontal scrolling of categories is smooth.
+- [x] Tab indicators move correctly between categories.
+- [x] The header background matches the scaffold color to provide a seamless sticky effect.
