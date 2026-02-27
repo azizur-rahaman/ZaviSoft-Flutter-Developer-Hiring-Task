@@ -68,7 +68,7 @@ class TopRankingSection extends StatelessWidget {
       width: 120.w,
       margin: EdgeInsets.symmetric(horizontal: 4.w),
       decoration: BoxDecoration(
-        color: const Color(0xFFFFF5F5), // Soft pink BG
+        color: AppColors.softOrangeBG,
         borderRadius: BorderRadius.circular(8.r),
       ),
       child: Column(
@@ -86,6 +86,7 @@ class TopRankingSection extends StatelessWidget {
           ),
           Expanded(
             child: Stack(
+              clipBehavior: Clip.none,
               children: [
                 Container(
                   padding: EdgeInsets.all(8.w),
@@ -93,18 +94,25 @@ class TopRankingSection extends StatelessWidget {
                     child: Icon(
                       Icons.smartphone,
                       size: 50.sp,
-                      color: Colors.grey,
+                      color: Colors.grey.withValues(alpha: 0.5),
                     ),
                   ),
                 ),
                 Positioned(
-                  top: 0,
-                  left: 8.w,
+                  top: -4.h,
+                  left: -4.w,
                   child: Container(
-                    padding: EdgeInsets.all(4.w),
-                    decoration: const BoxDecoration(
-                      color: Color(0xFFFFC400), // Gold
+                    padding: EdgeInsets.all(6.w),
+                    decoration: BoxDecoration(
+                      color: AppColors.ratingGold,
                       shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColors.ratingGold.withValues(alpha: 0.3),
+                          blurRadius: 4,
+                          offset: const Offset(0, 2),
+                        ),
+                      ],
                     ),
                     child: Text(
                       '$rank',

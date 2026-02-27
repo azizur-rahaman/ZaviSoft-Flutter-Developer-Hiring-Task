@@ -118,17 +118,17 @@ class HomePage extends StatelessWidget {
 
           // Phase 7: Floating CTA
           Positioned(
-            bottom: 20.h,
-            left: 20.w,
+            bottom: MediaQuery.of(context).padding.bottom + 16.h,
+            left: 16.w,
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
               decoration: BoxDecoration(
                 color: AppColors.primary,
-                borderRadius: BorderRadius.circular(20.r),
+                borderRadius: BorderRadius.circular(24.r),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.2),
-                    blurRadius: 10,
+                    color: AppColors.primary.withValues(alpha: 0.3),
+                    blurRadius: 12,
                     offset: const Offset(0, 4),
                   ),
                 ],

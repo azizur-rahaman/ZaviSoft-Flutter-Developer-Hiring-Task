@@ -139,10 +139,10 @@ class DashedRectPainter extends CustomPainter {
       ..strokeWidth = strokeWidth
       ..style = PaintingStyle.stroke;
 
-    double dashWidth = 5, dashSpace = 5;
+    double dashWidth = 3, dashSpace = 3;
     RRect rRect = RRect.fromRectAndRadius(
       Rect.fromLTWH(0, 0, size.width, size.height),
-      const Radius.circular(8),
+      Radius.circular(8.r),
     );
     Path path = Path()..addRRect(rRect);
 

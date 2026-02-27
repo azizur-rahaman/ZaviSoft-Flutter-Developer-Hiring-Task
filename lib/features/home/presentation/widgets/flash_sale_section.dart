@@ -68,17 +68,17 @@ class FlashSaleSection extends StatelessWidget {
 
   Widget _buildTimerBox(String value) {
     return Container(
-      padding: EdgeInsets.all(2.w),
+      padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
       decoration: BoxDecoration(
         color: AppColors.primary,
-        borderRadius: BorderRadius.circular(2.r),
+        borderRadius: BorderRadius.circular(4.r),
       ),
       child: Text(
         value,
         style: TextStyle(
           color: Colors.white,
-          fontSize: 10.sp,
-          fontWeight: FontWeight.bold,
+          fontSize: 12.sp,
+          fontWeight: FontWeight.w900,
         ),
       ),
     );
@@ -135,7 +135,7 @@ class FlashSaleSection extends StatelessWidget {
               const Spacer(),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 2.w),
-                color: AppColors.primary.withOpacity(0.1),
+                color: AppColors.primary.withValues(alpha: 0.1),
                 child: Text(
                   '-31%',
                   style: TextStyle(
